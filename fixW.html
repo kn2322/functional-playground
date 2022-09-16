@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>fixWriteUp</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<title>
+Exploring Type-level Fix Points
+</title>
+<p>I’m just starting to learn about type-level programming, and I’d like
+to share some ideas I’d been exploring, along with some questions.</p>
+<p>As you may know, recursive functions can be derived from
+non-recursive functions by an application of
+<code>fix :: (t -&gt; t) -&gt; t</code>. Here, we look at type-level
+fixed points given by the wrapper datatype
+<code>Fix :: (* -&gt; *) -&gt; *</code>, which allow us to derive
+recursive types from non-recursive ones.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">{-# LANGUAGE UndecidableInstances #-}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ot">{-# LANGUAGE FlexibleInstances #-}</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ot">{-# LANGUAGE MultiParamTypeClasses #-}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Prelude</span> <span class="kw">hiding</span> (foldr)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Fix</span> f <span class="ot">=</span> <span class="dt">Fix</span> (f (<span class="dt">Fix</span> f))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- Fix :: f (Fix f) -&gt; Fix f</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ot">unFix ::</span> <span class="dt">Fix</span> f <span class="ot">-&gt;</span> f (<span class="dt">Fix</span> f)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>unFix (<span class="dt">Fix</span> x) <span class="ot">=</span> x</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ot">fix ::</span> (t <span class="ot">-&gt;</span> t) <span class="ot">-&gt;</span> t</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>fix f <span class="ot">=</span> f (fix f)</span></code></pre></div>
+<p>For example,</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">ListK</span> a b <span class="ot">=</span> <span class="dt">NilK</span> <span class="op">|</span> <span class="dt">ConsK</span> a b</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">List</span> a <span class="ot">=</span> <span class="dt">Fix</span> (<span class="dt">ListK</span> a)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- elements of List a are things like</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Fix NilK. Fix (ConsK x (Fix NilK))</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Fix (ConsK x (Fix (ConsK y NilK)))</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Claim: List a is &#39;isomoprhic&#39; to [a]</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ot">toMyList ::</span> [a] <span class="ot">-&gt;</span> <span class="dt">List</span> a</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>toMyList [] <span class="ot">=</span> <span class="dt">Fix</span> <span class="dt">NilK</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>toMyList (x<span class="op">:</span>xs) <span class="ot">=</span> <span class="dt">Fix</span> (<span class="dt">ConsK</span> x (toMyList xs))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- conversely,</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ot">fromMyList ::</span> <span class="dt">List</span> a <span class="ot">-&gt;</span> [a]</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>fromMyList (<span class="dt">Fix</span> <span class="dt">NilK</span>) <span class="ot">=</span> []</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>fromMyList (<span class="dt">Fix</span> (<span class="dt">ConsK</span> x xs)) <span class="ot">=</span> x <span class="op">:</span> fromMyList xs</span></code></pre></div>
+<p>Now, I am very unsure about what isomorphic should mean (any
+explanation would be a gift). For now let us note that
+<code>toMyList</code> has a nice expression in terms of a
+<code>fold</code>, and <code>fromMyList</code> has a nice expression in
+terms of an <code>unfold</code>.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span><span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> b</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span> f e [] <span class="ot">=</span> e</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span> f e (x<span class="op">:</span>xs) <span class="ot">=</span> f x (<span class="fu">foldr</span> f e xs)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ot">unfoldr ::</span> (b <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (a, b)) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>unfoldr ask v <span class="ot">=</span> <span class="kw">case</span> ask v <span class="kw">of</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="ot">-&gt;</span> []</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Just</span> (x, v&#39;) <span class="ot">-&gt;</span> x <span class="op">:</span> unfoldr ask v&#39;</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>toMyList&#39; <span class="ot">=</span> <span class="fu">foldr</span> (\x res <span class="ot">-&gt;</span> <span class="dt">Fix</span> (<span class="dt">ConsK</span> x res)) (<span class="dt">Fix</span> <span class="dt">NilK</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fromMyList&#39; <span class="ot">=</span> unfoldr ask</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">where</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ot">        ask ::</span> <span class="dt">List</span> a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (a, <span class="dt">List</span> a)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        ask (<span class="dt">Fix</span> <span class="dt">NilK</span>) <span class="ot">=</span> <span class="dt">Nothing</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        ask (<span class="dt">Fix</span> (<span class="dt">ConsK</span> x xs)) <span class="ot">=</span> <span class="dt">Just</span> (x, xs)</span></code></pre></div>
+<p>To give us some more intuition before diving deeper, can you work out
+which (familiar) types the following fixed points are ‘isomorphic’
+to?</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">Fix</span> []</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;!</span><span class="kw">data</span> <span class="dt">BTree</span> <span class="ot">=</span> <span class="dt">Leaf</span> <span class="op">|</span> <span class="dt">Fork</span> <span class="dt">BTree</span> <span class="dt">BTree</span><span class="op">!&lt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">Fix</span> <span class="dt">Maybe</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;!</span><span class="kw">data</span> <span class="dt">Nat</span> <span class="ot">=</span> <span class="dt">Z</span> <span class="op">|</span> <span class="dt">S</span> <span class="dt">Nat</span><span class="op">!&lt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">Fix</span> ((<span class="ot">-&gt;</span>) a)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;!</span>()<span class="op">!&lt;</span></span></code></pre></div>
+<p>The ‘isomorphisms’ are given by</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">BTree</span> <span class="ot">=</span> <span class="dt">Leaf</span> <span class="op">|</span> <span class="dt">Fork</span> <span class="dt">BTree</span> <span class="dt">BTree</span> <span class="kw">deriving</span> <span class="dt">Show</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Nat</span> <span class="ot">=</span> <span class="dt">Z</span> <span class="op">|</span> <span class="dt">S</span> <span class="dt">Nat</span> <span class="kw">deriving</span> <span class="dt">Show</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ot">toA ::</span> <span class="dt">BTree</span> <span class="ot">-&gt;</span> <span class="dt">Fix</span> []</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>toA <span class="dt">Leaf</span> <span class="ot">=</span> <span class="dt">Fix</span> []</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>toA (<span class="dt">Fork</span> l r) <span class="ot">=</span> <span class="dt">Fix</span> ((toA l) <span class="op">:</span> unFix (toA r))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ot">fromA ::</span> <span class="dt">Fix</span> [] <span class="ot">-&gt;</span> <span class="dt">BTree</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>fromA (<span class="dt">Fix</span> []) <span class="ot">=</span> <span class="dt">Leaf</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>fromA (<span class="dt">Fix</span> (x <span class="op">:</span> xs)) <span class="ot">=</span> <span class="dt">Fork</span> (fromA x) (fromA (<span class="dt">Fix</span> xs))</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ot">toB ::</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Fix</span> <span class="dt">Maybe</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>toB <span class="dt">Z</span> <span class="ot">=</span> <span class="dt">Fix</span> <span class="dt">Nothing</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>toB (<span class="dt">S</span> n) <span class="ot">=</span> <span class="dt">Fix</span> (<span class="dt">Just</span> (toB n))</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ot">fromB ::</span> <span class="dt">Fix</span> <span class="dt">Maybe</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>fromB (<span class="dt">Fix</span> <span class="dt">Nothing</span>) <span class="ot">=</span> <span class="dt">Z</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>fromB (<span class="dt">Fix</span> (<span class="dt">Just</span> x)) <span class="ot">=</span> <span class="dt">S</span> (fromB x)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="ot">toC ::</span> () <span class="ot">-&gt;</span> <span class="dt">Fix</span> ((<span class="ot">-&gt;</span>) a)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>toC () <span class="ot">=</span> <span class="dt">Fix</span> (\x <span class="ot">-&gt;</span> toC ())</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="ot">fromC ::</span> <span class="dt">Fix</span> ((<span class="ot">-&gt;</span>) a) <span class="ot">-&gt;</span> ()</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>fromC f <span class="ot">=</span> ()</span></code></pre></div>
+<p>Now, I introduce (two) pieces of magic to make the examples so far
+more interesting. My guiding question was: How can we define functions
+from <code>Fix f</code>? Can we define a fold? Can we define nice
+functions from <code>Fix f</code> in terms of folds from
+<code>f</code>?</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ot">lift ::</span> <span class="dt">Functor</span> f <span class="ot">=&gt;</span> (f b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Fix</span> f <span class="ot">-&gt;</span> b</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lift f <span class="ot">=</span> fix (\u <span class="ot">-&gt;</span> f <span class="op">.</span> <span class="fu">fmap</span> u <span class="op">.</span> unFix)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ot">refix ::</span> <span class="dt">Functor</span> f <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> f a) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Fix</span> f</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>refix f <span class="ot">=</span> fix (\u <span class="ot">-&gt;</span> <span class="dt">Fix</span> <span class="op">.</span> <span class="fu">fmap</span> u <span class="op">.</span> f)</span></code></pre></div>
+<p>I wrote down <code>lift</code> and <code>refix</code>, but I am still
+far from understanding their full power (thanks/no thanks to the
+type-checker).</p>
+<p>First, an application:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- where UndecidableInstances come in</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> (<span class="dt">Functor</span> f, <span class="dt">Show</span> (f <span class="dt">String</span>)) <span class="ot">=&gt;</span> <span class="dt">Show</span> (<span class="dt">Fix</span> f) <span class="kw">where</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">show</span> <span class="ot">=</span> lift <span class="fu">show</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ot">nu ::</span> <span class="dt">Fix</span> []</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>nu <span class="ot">=</span> <span class="dt">Fix</span> (<span class="dt">Fix</span> (<span class="dt">Fix</span> [] <span class="op">:</span> <span class="dt">Fix</span> [] <span class="op">:</span> []) <span class="op">:</span> <span class="dt">Fix</span> [] <span class="op">:</span> [])</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- *Main&gt; nu</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- [&quot;[\&quot;[]\&quot;,\&quot;[]\&quot;]&quot;,&quot;[]&quot;]</span></span></code></pre></div>
+<p>Just like that, we can now print fix point types to our hearts’
+content.</p>
+<p><code>lift</code> and <code>refix</code> are able to ‘lift’
+<code>fold</code> and <code>unfold</code> of <code>f</code> to the
+corresponding <code>fold</code> and <code>unfold</code> of
+<code>Fix f</code>. <code>lift</code> allows us to naturally define
+functions from fix point types, while ‘refix’ allows us to naturally
+define functions to fix point types. The two combinators are in some
+(categorical?) sense duals of each other.</p>
+<p>Taking <code>f = [], Fix f = Fix []</code> as our example, we have
+the following theorems. Let</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- foldr, unfoldr copied here for reference</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ot">foldr&#39; ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> b</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>foldr&#39; f e [] <span class="ot">=</span> e</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>foldr&#39; f e (x<span class="op">:</span>xs) <span class="ot">=</span> f x (foldr&#39; f e xs)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ot">foldF ::</span> (b <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> <span class="dt">Fix</span> [] <span class="ot">-&gt;</span> b</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>foldF f e (<span class="dt">Fix</span> []) <span class="ot">=</span> e</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>foldF f e (<span class="dt">Fix</span> (x <span class="op">:</span> xs)) <span class="ot">=</span> f (foldF f e x) (foldF f e (<span class="dt">Fix</span> xs))</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- foldF is what you get if you try to define a fold from Fix []</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Note how its structure is similar to the fold from BTree</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- Theorem:</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- forall e :: b, f :: b -&gt; b -&gt; b.</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">-- foldF f e = lift (foldr f e)</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="ot">unfoldr&#39; ::</span> (b <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (a, b)) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a]</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>unfoldr&#39; ask v <span class="ot">=</span> <span class="kw">case</span> ask v <span class="kw">of</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="ot">-&gt;</span> []</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Just</span> (x, v&#39;) <span class="ot">-&gt;</span> x <span class="op">:</span> unfoldr&#39; ask v&#39;</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="ot">unfoldF ::</span> (t <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (t, t)) <span class="ot">-&gt;</span> t <span class="ot">-&gt;</span> <span class="dt">Fix</span> []</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>unfoldF ask v <span class="ot">=</span> <span class="kw">case</span> ask v <span class="kw">of</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="dt">Fix</span> []</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Just</span> (x, v&#39;) <span class="ot">-&gt;</span> <span class="dt">Fix</span> (unfoldF ask x <span class="op">:</span> unFix (unfoldF ask v&#39;))</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co">-- (Dually?) unfoldF is what you get if you try to define an unfold to Fix []</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co">-- Theorem:</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="co">-- forall ask :: t -&gt; Maybe (t, t).</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co">-- unfoldF ask = refix (unfoldr ask)</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="co">-- Proof: By induction, and an exercise! I will reproduce it if asked, o/w this post is getting long as it is</span></span></code></pre></div>
+<p>In other words, fold of fix is (basically) fix of fold, and unfold of
+fix is (basically) fix of unfold. Isn’t that amazing? Folds on
+<code>[]</code> now exhaustively describe folds on
+<code>BTree</code>.</p>
+<p>I suspect there is a (categorical?) datatype generic way to express
+these two theorems for any algebraic datatype
+<code>f :: * -&gt; *</code> with an instance of <code>Functor</code>,
+which I do not know.</p>
+<p>An immediate application is more elegant functions for type
+isomorphisms, and a way to ‘derive’ <code>fold</code> and
+<code>unfold</code> for <code>Fix f</code> from <code>fold</code> and
+<code>unfold</code> for <code>f</code>.</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ot">toBTree ::</span> <span class="dt">Fix</span> [] <span class="ot">-&gt;</span> <span class="dt">BTree</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>toBTree <span class="ot">=</span> lift (<span class="fu">foldr</span> <span class="dt">Fork</span> <span class="dt">Leaf</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ot">fromBTree ::</span> <span class="dt">BTree</span> <span class="ot">-&gt;</span> <span class="dt">Fix</span> []</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>fromBTree <span class="ot">=</span> refix (unfoldr ask)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">where</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="ot">        ask ::</span> <span class="dt">BTree</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">BTree</span>, <span class="dt">BTree</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        ask <span class="dt">Leaf</span> <span class="ot">=</span> <span class="dt">Nothing</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        ask (<span class="dt">Fork</span> l r) <span class="ot">=</span> <span class="dt">Just</span> (l, r)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- nu :: Fix []</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- nu = Fix (Fix (Fix [] : Fix [] : []) : Fix [] : [])</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- [&quot;[\&quot;[]\&quot;,\&quot;[]\&quot;]&quot;,&quot;[]&quot;]</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>nu&#39; <span class="ot">=</span> toBTree nu</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- Fork (Fork Leaf (Fork Leaf Leaf)) (Fork Leaf Leaf)</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>nu&#39;&#39; <span class="ot">=</span> fromBTree nu&#39;</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">-- [&quot;[\&quot;[]\&quot;,\&quot;[]\&quot;]&quot;,&quot;[]&quot;]</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- = nu</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="ot">foldF&#39; ::</span> (b <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> <span class="dt">Fix</span> [] <span class="ot">-&gt;</span> b</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>foldF&#39; f e <span class="ot">=</span> lift (<span class="fu">foldr</span> f e)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="ot">unfoldF&#39; ::</span> (t <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (t, t)) <span class="ot">-&gt;</span> t <span class="ot">-&gt;</span> <span class="dt">Fix</span> []</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>unfoldF&#39; ask <span class="ot">=</span> refix (unfoldr ask)</span></code></pre></div>
+<p>Compare this with <code>toA</code> and <code>fromA</code>,
+<code>foldF</code> and <code>unfoldF</code>.</p>
+<p>You might be curious about how <code>lift</code> and
+<code>refix</code> were derived. 1. Write foldF, notice the structural
+similarities with foldr 2. Transform foldF algebraically to equivalent
+functions (perhaps 5-6 times), trying to extract foldr from it. Use the
+type-checker to reassure yourself as you go 3. Arrive at the equation
+<code>foldF f e = fix (\u -&gt; foldF f e . fmap u . unFix)</code>, and
+go ‘aha!’, noticing that we can abstract over <code>foldF f e</code> by
+defining <code>lift g = fix (\u -&gt; g . fmap u . unFix)</code> 4.
+Remove the type you originally had for lift in terms of
+<code>Fix []</code>, and let the type-checker tell you its magical type
+<code>lift :: Functor f =&gt; (f b -&gt; b) -&gt; Fix f -&gt; b</code>
+5. Apply analogies of steps 1-4 to unfoldF and unfoldr to get refix. 6.
+Scratch your head about why lift is so general that it makes no mention
+of folds or lists</p>
+<p>I had hoped to ‘derive’ refix after the derivation of lift as an
+immediate consequence, but I could not figure it out. I suspect it is
+possible, given how their derivations follow the same steps, and their
+definitions are almost the reverse of each other.</p>
+<p>Next, let us do some type-level magic following the question: how are
+types which are fixed by a given ’f :: * -&gt; *’ related?</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">FixedByList</span> a <span class="kw">where</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    flatten ::</span> [a] <span class="ot">-&gt;</span> a <span class="co">-- should be inverses, and isomorphisms, whatever that means</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    raise ::</span> a <span class="ot">-&gt;</span> [a]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    toFix ::</span> a <span class="ot">-&gt;</span> <span class="dt">Fix</span> [] <span class="co">-- Fix [] is a canonical type of the type class (in some sense)</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    toFix <span class="ot">=</span> refix raise</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="ot">    fromFix ::</span> <span class="dt">Fix</span> [] <span class="ot">-&gt;</span> a</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    fromFix <span class="ot">=</span> lift flatten</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="ot">    translate ::</span> <span class="dt">FixedByList</span> b <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> b <span class="co">-- defines a (???) over the typeclass FixedByList</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    translate <span class="ot">=</span> fromFix <span class="op">.</span> toFix</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">FixedByList</span> (<span class="dt">Fix</span> []) <span class="kw">where</span> <span class="co">-- where FlexibleInstances come in</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    flatten <span class="ot">=</span> <span class="dt">Fix</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    raise <span class="ot">=</span> unFix</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">FixedByList</span> a <span class="ot">=&gt;</span> <span class="dt">FixedByList</span> [a] <span class="kw">where</span> <span class="co">-- applying [] should not change anything if you are fixed by []</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    flatten <span class="ot">=</span> <span class="fu">fmap</span> flatten</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    raise <span class="ot">=</span> <span class="fu">fmap</span> raise</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">FixedByList</span> <span class="dt">BTree</span> <span class="kw">where</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    flatten <span class="ot">=</span> <span class="fu">foldr</span> <span class="dt">Fork</span> <span class="dt">Leaf</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    raise <span class="ot">=</span> unfoldr ask</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>        <span class="kw">where</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>            ask <span class="dt">Leaf</span> <span class="ot">=</span> <span class="dt">Nothing</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>            ask (<span class="dt">Fork</span> l r) <span class="ot">=</span> <span class="dt">Just</span> (l, r)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">-- *Main&gt; translate nu :: Fix []</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">-- [&quot;[\&quot;[]\&quot;,\&quot;[]\&quot;]&quot;,&quot;[]&quot;]</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">-- *Main&gt; translate nu :: [Fix []]</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="co">-- [[&quot;[]&quot;,&quot;[]&quot;],[]]</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">-- *Main&gt; translate nu :: [[Fix []]]</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co">-- [[[],[]],[]]</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="co">-- *Main&gt; translate nu :: [[[Fix []]]]</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="co">-- [[[],[]],[]]</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="co">-- *Main&gt; translate nu :: BTree</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="co">-- Fork (Fork Leaf (Fork Leaf Leaf)) (Fork Leaf Leaf)</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="co">-- *Main&gt; translate nu :: [BTree]</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="co">-- [Fork Leaf (Fork Leaf Leaf),Leaf]</span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="co">-- *Main&gt; translate nu :: [[BTree]]</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="co">-- [[Leaf,Leaf],[]]</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="co">-- *Main&gt; translate nu :: [[[BTree]]]</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co">-- [[[],[]],[]]</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="co">-- *Main&gt; translate nu :: [[[[BTree]]]]</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="co">-- [[[],[]],[]]</span></span></code></pre></div>
+<p>Notably, we can show that a type <code>a</code> is isomorphic to
+<code>Fix []</code> by just providing <code>flatten</code> and
+<code>raise</code>, without needing to think about the fix point type at
+all!</p>
+<p>The above type class <code>FixedByList</code> generalises to a
+multi-parameter type class
+<code>Fixes :: (* -&gt; *) -&gt; * -&gt; Constraint</code> where
+<code>FixedByList = Fixes []</code> with minimal changes (as lift and
+refix have very general types).</p>
+<p>The one exception is <code>translate</code>, where GHC complains with
+the following error:</p>
+<pre><code>• Could not deduce (Functor f0)
+   from the context: (Functor f, Fixes f a, Fixes f b)
+     bound by the type signature for:
+                translate :: forall (f :: * -&gt; *) a b.
+                             (Functor f, Fixes f a, Fixes f b) =&gt;
+                             a -&gt; b
+     at btree_and_generalise.hs:36:14-56
+   The type variable ‘f0’ is ambiguous
+ • In the ambiguity check for ‘translate’
+   To defer the ambiguity check to use sites, enable AllowAmbiguousTypes
+   In the type signature:
+     translate :: (Functor f, Fixes f a, Fixes f b) =&gt; a -&gt; b</code></pre>
+<p>And if I enable AllowAmbiguousTypes:</p>
+<pre><code>• Could not deduce (Fixes f0 a) arising from a use of ‘toFix’
+  from the context: (Functor f, Fixes f a, Fixes f b)
+    bound by the type signature for:
+               translate :: forall (f :: * -&gt; *) a b.
+                            (Functor f, Fixes f a, Fixes f b) =&gt;
+                            a -&gt; b
+    at btree_and_generalise.hs:36:1-56
+  The type variable ‘f0’ is ambiguous
+  Relevant bindings include
+    translate :: a -&gt; b (bound at btree_and_generalise.hs:37:1)
+  These potential instances exist:
+    instance (Functor f, Fixes f a) =&gt; Fixes f (f a)
+      -- Defined at btree_and_generalise.hs:21:10
+    instance Fixes f (Fix f)
+      -- Defined at btree_and_generalise.hs:25:10
+    instance Fixes (Either a) (Chain a)
+      -- Defined at btree_and_generalise.hs:61:10
+    ...plus five others
+    ...plus one instance involving out-of-scope types
+    (use -fprint-potential-instances to see them all)
+• In the second argument of ‘(.)’, namely ‘toFix’
+  In the expression: fromFix . toFix
+  In an equation for ‘translate’: translate = fromFix . toFix</code></pre>
+<p>I do not know why (can provide full code if necessary).</p>
+<p>Finally, I wish to leave you with some vague but perhaps fruitful
+questions.</p>
+<ol type="1">
+<li>What does it <em>mean</em> for a type to be the fix point of
+another? Take <code>BTree</code>, we have deduced that
+<code>[BTree]</code> is essentially the same as <code>BTree</code>, so
+any data can be viewed as members of either type. We can say that
+‘Having a list of <code>BTree</code>s is no different from having a
+single <code>BTree</code>’. In this specific case, we can say that a
+<code>[BTree]</code> is viewing <code>BTree</code> via a decomposition
+along its right descendants. What about more generally?</li>
+<li>An algebraic approach: Can we describe a given datatype in terms of
+the fix point equations it satisfies? If we say that type <code>a</code>
+is invariant under <code>[], Maybe, ...</code>, what do we now know
+about <code>a</code>’s structure and how we might work with it? A
+related question is: Are there any methods for showing that a given type
+does not satisfy a fix point equation? E.g. Is <code>Nat</code> fixed by
+<code>[]</code>? (I think the answer is yes if we disallow infinite
+values, no otherwise (without proof))</li>
+<li>Is there a rigorous foundation for this style of reasoning?</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode haskell literate"><code class="sourceCode haskell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">RoseTree</span> a <span class="ot">=</span> <span class="dt">Node</span> a [<span class="dt">RoseTree</span> a]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">{-</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">x :: Fix RoseTree implies x = Fix Node y ys</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">where y :: Fix RoseTree, ys :: [RoseTree (Fix RoseTree)]</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">So a = Fix RoseTree satisfies the following isomorphism</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">a ~ (a, [a])</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">~ nonempty lists of a</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">-}</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">IList</span> a <span class="ot">=</span> <span class="dt">Only</span> a <span class="op">|</span> <span class="dt">Cons</span> a (<span class="dt">IList</span> a) <span class="kw">deriving</span> <span class="dt">Show</span> <span class="co">-- inhabited list</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">{-</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">Only :: Fix IList -&gt; IList (Fix IList)</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">~ Fix IList -&gt; Fix IList</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">Cons :: Fix IList -&gt; IList (Fix IList) -&gt; IList (Fix IList)</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">~ Fix IList -&gt; Fix IList -&gt; Fix IList</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">Inspecting the types of the constructors, a ~ a kind of infinite binary tree, which I call StreamTree below</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">-}</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">StreamTree</span> <span class="ot">=</span> <span class="dt">Next</span> <span class="dt">StreamTree</span> <span class="op">|</span> <span class="dt">Branch</span> <span class="dt">StreamTree</span> <span class="dt">StreamTree</span> <span class="kw">deriving</span> <span class="dt">Show</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Fixes</span> f a <span class="kw">where</span> <span class="co">-- read &#39;f fixes a&#39;</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co">-- where MultiParamTypeClasses come in</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="ot">    flatten&#39; ::</span> f a <span class="ot">-&gt;</span> a</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="ot">    raise&#39; ::</span> a <span class="ot">-&gt;</span> f a</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Fixes</span> <span class="dt">RoseTree</span> <span class="dt">StreamTree</span> <span class="kw">where</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    flatten&#39; (<span class="dt">Node</span> x []) <span class="ot">=</span> <span class="dt">Next</span> x</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    flatten&#39; (<span class="dt">Node</span> x xs) <span class="ot">=</span> <span class="dt">Branch</span> x (f (<span class="fu">fmap</span> flatten&#39; xs))</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>        <span class="kw">where</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="ot">            f ::</span> [<span class="dt">StreamTree</span>] <span class="ot">-&gt;</span> <span class="dt">StreamTree</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>            f [z] <span class="ot">=</span> <span class="dt">Next</span> z</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>            f (z<span class="op">:</span>zs) <span class="ot">=</span> <span class="dt">Branch</span> z (f zs)</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    raise&#39; (<span class="dt">Next</span> x) <span class="ot">=</span> <span class="dt">Node</span> x []</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    raise&#39; (<span class="dt">Branch</span> l r) <span class="ot">=</span> <span class="dt">Node</span> l (<span class="fu">fmap</span> raise&#39; (g r))</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>        <span class="kw">where</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="ot">            g ::</span> <span class="dt">StreamTree</span> <span class="ot">-&gt;</span> [<span class="dt">StreamTree</span>]</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>            g (<span class="dt">Next</span> z) <span class="ot">=</span> [z]</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>            g (<span class="dt">Branch</span> z zs) <span class="ot">=</span> z <span class="op">:</span> g zs</span></code></pre></div>
+<p>Where the instance <code>Fixes RoseTree StreamTree</code> appears to
+work, as <code>flatten</code> and <code>raise</code> are indeed inverses
+(mod some things I don’t understand about induction and infinite
+values).</p>
+</body>
+</html>
